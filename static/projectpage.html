@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+<title>Propose a project</title>
+</head>
+<body>
+	<form>
+		Yritys<input type="text" id="company"><br> 
+		Email<input type="text" id="email"><br> 
+		Project description <br><textarea rows="8" cols="50" id="ta1"></textarea><br> 
+		Tags<input type="text" id="tags"><br> 
+		<input type="checkbox" name="ofs" id="ofs">
+		Open for students<br> <input type="button" onClick="save('post')" value="Lisää">
+	</form>
+	<script>
+		function save(post){
+			var project = {}; //Javascript olio, jonka nimi project
+			project.company = document.getElementById("company").value;
+			project.cont_email = document.getElementById("email").value;
+			project.description = document.getElementById("ta1").value;
+			project.tags = document.getElementById("tags").value;
+			//project.tags = "tagsSet":[document.getElementById("tags").value];
+			project.openforstudents = document.getElementById("ofs").value;
+			console.log(project);
+		
+		//Now we send the JSON - object to our REST service
+        $.ajax({
+        	type: 'post',
+        	url: '/project',
+            data: project,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function (data) {
+                alert(project);
+            },
+			failure : function(errMsg) {
+				alert(errMsg);
+			}
+        });
+		}
+	</script>	
+</body>
+</html>
