@@ -1,1 +1,44 @@
 @CHARSET "ISO-8859-1";
+ul {
+    list-style-type: none;
+    margin: 15px auto;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    width: 40%;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+.container {
+  width: 20%;
+  margin: 15px auto;
+}
+.kentta {
+  width: 35%;
+  margin: 15px auto;
+}
+input {
+	margin: 7px auto;
+}
+.namiska {
+	float: right;
+	margin-right: 20px;
+}
+.active {
+    background-color: #4CAF50;
+}

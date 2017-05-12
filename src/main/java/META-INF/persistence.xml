@@ -6,9 +6,9 @@
 		<class>project.model.Tag</class>
 			<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://mysql.cc.puv.fi:3306/e1500844_project"/>
-			<property name="javax.persistence.jdbc.user" value=""/>
+			<property name="javax.persistence.jdbc.user" value="e1500844"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="javax.persistence.jdbc.password" value="mecD2BjC5xTC"/>
+			<property name="javax.persistence.jdbc.password" value=""/>
 		</properties>
 	</persistence-unit>
 </persistence>
