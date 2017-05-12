@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<title>Student criteria</title>
+</head>
+<body>
+<ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a class="active" href="studentpage.html">Student</a></li>
+  <li><a href="projectpage.html">Project</a></li>
+</ul>
+<br>
+<div class="kentta">
+	<form>
+	<fieldset>
+	<legend>Student information:</legend>
+		Name: <input type="text" id="company"><br> 
+		Email: <input type="text" id="email"><br>
+		Mobile: <input type="text" id="mobile"><br>
+		Credits: <input type="text" id="credits"><br>
+		Average grade: <input type="text" id="ave_grade"><br>
+		Tags: <input type="text" id="tags"><br>  
+		<input type="checkbox" name="ofs" id="ofs"> Available<br>
+		<input type="button" class="namiska" onClick="save('post')" value="Save">
+	</fieldset>
+	</form>
+</div>
+	<script>
+		function save(post) { //Datan tallennus tietokantaan, toimii.
+			var student = {};
+			student.name = document.getElementById("company").value;
+			student.email = document.getElementById("email").value;
+			student.mobile = document.getElementById("mobile").value;
+			student.credits = document.getElementById("credits").value;
+			student.ave_grade = document.getElementById("ave_grade").value;
+			student.tags = document.getElementById("tags").value;
+			student.available = document.getElementById("ofs").value;
+			
+			var parsestudent = JSON.stringify(student);
+			console.log(parsestudent);
+			
+			$.ajax({
+				type : post,
+				url : "/student",
+				data : parsestudent,
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				success : function(data) {
+					alert("Data saved successfully");
+				},
+				failure : function(errMsg) {
+					alert(errMsg);
+				}
+			});
+		}
+	</script>
+</body>
+</html>

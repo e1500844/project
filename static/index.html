@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<title>Main page</title>
+<script>
+function fill(){ //HAKEE KANNASTA TAG TAULUSTA TAGIT JA TULOSTAA NE PROJECT PIPELINEEN
+	$.ajax({
+	type: "GET",
+	url: "/tag/all",
+	dataType: "json",
+	contentType : "application/json; charset=utf-8",		
+	success: function (diagram) {
+			var kaikki = JSON.stringify(diagram);
+			var parsekaikki = JSON.parse(kaikki);
+			var length = Object.keys(parsekaikki).length;
+			var tagi = [];
+			for(var i=0;i<length;i++){
+				tagi[i] = parsekaikki[i].name;
+				console.log(tagi[i]);
+			}
+			var ctx2 = document.getElementById("projectChart").getContext('2d');
+			var myChart = new Chart(ctx2, {
+			 type: 'pie',
+			  data: {
+			    labels: [tagi[0],tagi[1],tagi[2]],
+			    datasets: [{
+			      backgroundColor: [
+			        "#2ecc71",
+			        "#3498db",
+			        "#5123db"
+			      ],
+			      data: [1, 1, 1]
+			    }]
+			  }
+			});
+		}
+	});
+}
+</script>
+</head>
+<body onload="fill()">
+<ul>
+  <li><a class="active" href="index.html">Home</a></li>
+  <li><a href="studentpage.html">Student</a></li>
+  <li><a href="projectpage.html">Project</a></li>
+</ul>
+<br>
+<div class="container">
+  <h2>Project pipeline</h2>
+  <div>
+    <canvas id="projectChart"></canvas>
+  </div>
+</div>
+<script>
+
+</script>
+<div class="container">
+  <h2>Student pipeline</h2>
+  <div>
+    <canvas id="studentChart"></canvas>
+  </div>
+</div>
+<script>
+var a = "java";
+var b = "HTML";
+var ctx = document.getElementById("studentChart").getContext('2d');
+var myChart = new Chart(ctx, {
+ type: 'pie',
+  data: {
+    labels: [a, b,],
+    datasets: [{
+      backgroundColor: [
+        "#2ecc71",
+        "#3498db",
+
+      ],
+      data: [12, 1]
+    }]
+  }
+});
+</script>
+</body>
+</html>
